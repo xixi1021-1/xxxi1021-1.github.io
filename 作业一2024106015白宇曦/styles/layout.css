@@ -1,0 +1,705 @@
+@charset "utf-8";
+/* CSS Document - 浅色优雅版 */
+
+/* ===== CSS变量定义 ===== */
+:root {
+    --primary-pink: #f8c8dc;
+    --primary-blue: #a7d2e8;
+    --primary-purple: #d4c1ec;
+    --primary-beige: #f9f3e9;
+    --accent-coral: #ffb6b9;
+    --accent-mint: #b8e0d2;
+    --accent-lavender: #e6e6fa;
+    --text-dark: #5d5d5d;
+    --text-light: #7a7a7a;
+    --gradient-bg: linear-gradient(135deg, #f8c8dc 0%, #a7d2e8 50%, #d4c1ec 100%);
+    --gradient-soft: linear-gradient(135deg, #f9f3e9 0%, #f8f0f8 100%);
+    --gradient-accent: linear-gradient(45deg, #ffb6b9, #b8e0d2, #a7d2e8, #d4c1ec);
+    --shadow-soft: 0 8px 25px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 12px 35px rgba(0, 0, 0, 0.12);
+    --border-radius: 20px;
+    --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* ===== 基础样式 ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Microsoft YaHei', -apple-system, sans-serif;
+    line-height: 1.7;
+    color: var(--text-dark);
+    background: var(--gradient-bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* 优雅的背景图案 */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.4) 0%, transparent 50%),
+        radial-gradient(circle at 85% 75%, rgba(248, 200, 220, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(167, 210, 232, 0.2) 0%, transparent 50%);
+    z-index: -1;
+    animation: gentleFloat 20s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-10px, -10px) scale(1.02); }
+}
+
+/* ===== 主容器样式 ===== */
+.container {
+    max-width: 1200px;
+    margin: 30px auto;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-medium);
+    overflow: hidden;
+    position: relative;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* 优雅边框效果 */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    right: -1px;
+    bottom: -1px;
+    background: linear-gradient(135deg, 
+        rgba(248, 200, 220, 0.3), 
+        rgba(167, 210, 232, 0.3), 
+        rgba(212, 193, 236, 0.3));
+    border-radius: calc(var(--border-radius) + 1px);
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* 装饰性花朵元素 */
+.container::after {
+    content: '🌸';
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 1.6em;
+    opacity: 0.5;
+    animation: gentleBounce 4s ease-in-out infinite;
+    z-index: 2;
+}
+
+@keyframes gentleBounce {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-5px) rotate(10deg); }
+}
+
+/* ===== 头部样式 ===== */
+header {
+    background: linear-gradient(135deg, 
+        rgba(248, 200, 220, 0.9), 
+        rgba(167, 210, 232, 0.85), 
+        rgba(212, 193, 236, 0.8));
+    color: #5d5d5d;
+    padding: 70px 0 45px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    animation: gentleShine 8s infinite;
+}
+
+@keyframes gentleShine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+header::after {
+    content: '📚';
+    position: absolute;
+    bottom: 25px;
+    left: 50px;
+    font-size: 1.8em;
+    opacity: 0.3;
+    animation: float 6s ease-in-out infinite;
+}
+
+header h1 {
+    font-size: 3.2em;
+    margin-bottom: 20px;
+    font-weight: 300;
+    letter-spacing: 2px;
+    position: relative;
+    display: inline-block;
+    color: #6b5b95;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+header h1::after {
+    content: '';
+
+    position: absolute;
+    bottom: -12px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(107, 91, 149, 0.5), 
+        transparent);
+    border-radius: 1px;
+}
+
+/* ===== 导航栏样式 ===== */
+nav {
+    background: rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(15px);
+    padding: 20px 0;
+    margin-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 0 20px;
+}
+
+nav a {
+    color: #6b5b95;
+    text-decoration: none;
+    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 25px;
+    transition: var(--transition);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent);
+    transition: left 0.6s;
+}
+
+nav a:hover::before {
+    left: 100%;
+}
+
+nav a:hover {
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.8);
+    color: #8a6bb8;
+}
+
+/* ===== 主内容区样式 ===== */
+main {
+    padding: 50px 40px;
+    position: relative;
+}
+
+/* 装饰性背景 */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(248, 200, 220, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 90% 80%, rgba(167, 210, 232, 0.1) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* ===== 欢迎区域样式 ===== */
+#welcome {
+    text-align: center;
+    margin-bottom: 50px;
+    padding: 45px 35px;
+    background: var(--gradient-soft);
+    color: var(--text-dark);
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+#welcome::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.3) 1px, transparent 1px),
+        radial-gradient(circle, rgba(248, 200, 220, 0.2) 2px, transparent 2px);
+    background-size: 40px 40px, 80px 80px;
+    animation: gentleFloat 25s linear infinite;
+}
+
+#welcome::after {
+    content: '💫';
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 2em;
+    opacity: 0.2;
+    animation: gentleBounce 4s ease-in-out infinite;
+}
+
+#welcome h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+    color: #6b5b95;
+    font-weight: 300;
+}
+
+#welcome h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        var(--accent-coral), 
+        transparent);
+    border-radius: 1px;
+}
+
+#welcome p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    line-height: 1.8;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-light);
+}
+
+#welcome img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: var(--shadow-soft);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: var(--transition);
+    position: relative;
+}
+
+#welcome img:hover {
+    transform: scale(1.02);
+    box-shadow: var(--shadow-medium);
+}
+
+/* ===== 文章区域样式 ===== */
+#recent-articles {
+    position: relative;
+}
+
+#recent-articles::before {
+    content: '✨';
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    font-size: 3em;
+    opacity: 0.1;
+    z-index: 0;
+}
+
+#recent-articles h2 {
+    color: #6b5b95;
+    font-size: 2.3em;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+    padding-bottom: 20px;
+    font-weight: 300;
+}
+
+#recent-articles h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: var(--gradient-accent);
+    border-radius: 2px;
+}
+
+/* ===== 文章卡片样式 ===== */
+article {
+    background: rgba(255, 255, 255, 0.7);
+    margin-bottom: 30px;
+    padding: 35px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-soft);
+    border-left: 4px solid var(--primary-pink);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+}
+
+article::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(248, 200, 220, 0.2), 
+        transparent);
+    transition: left 0.8s;
+}
+
+article:hover::before {
+    left: 100%;
+}
+
+article:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-medium);
+    border-left-color: var(--accent-coral);
+}
+
+/* 文章装饰图标 */
+article::after {
+    content: '📖';
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.6em;
+    opacity: 0.2;
+    transition: var(--transition);
+}
+
+article:hover::after {
+    opacity: 0.4;
+    transform: scale(1.2) rotate(10deg);
+}
+
+article h3 {
+    color: #6b5b95;
+    font-size: 1.6em;
+    margin-bottom: 15px;
+    border-bottom: 2px solid rgba(248, 200, 220, 0.3);
+    padding-bottom: 12px;
+    position: relative;
+    font-weight: 400;
+}
+
+article h3::before {
+    content: '🌸';
+    position: absolute;
+    left: -30px;
+    top: 0;
+    font-size: 1.2em;
+    opacity: 0.5;
+}
+
+article h4 {
+    color: #7a6b95;
+    margin: 20px 0 12px 0;
+    font-size: 1.2em;
+    border-left: 3px solid var(--primary-blue);
+    padding-left: 15px;
+    background: linear-gradient(90deg, 
+        rgba(167, 210, 232, 0.1), 
+        transparent);
+    border-radius: 0 8px 8px 0;
+    font-weight: 400;
+}
+
+article p {
+    margin-bottom: 15px;
+    color: var(--text-light);
+    line-height: 1.7;
+    position: relative;
+    padding-left: 12px;
+}
+
+article p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    background: var(--primary-blue);
+    border-radius: 50%;
+    opacity: 0.5;
+}
+
+article ul, article ol {
+    margin: 18px 0;
+    padding-left: 25px;
+}
+
+article li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+    position: relative;
+    padding-left: 12px;
+    color: var(--text-light);
+}
+
+article ul li::before {
+    content: '💮';
+    position: absolute;
+    left: -20px;
+    top: 2px;
+    font-size: 0.9em;
+    opacity: 0.6;
+}
+
+article ol {
+    counter-reset: item;
+}
+
+article ol li {
+    counter-increment: item;
+}
+
+article ol li::before {
+    content: counter(item) '.';
+    color: var(--accent-coral);
+    font-weight: 500;
+    position: absolute;
+    left: -20px;
+    top: 0;
+    font-size: 0.9em;
+}
+
+/* 标签样式 */
+article strong {
+    background: linear-gradient(135deg, var(--primary-pink), var(--accent-coral));
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    margin-right: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    font-weight: 500;
+}
+
+article strong::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.4), 
+        transparent);
+    transition: left 0.6s;
+}
+
+article strong:hover::before {
+    left: 100%;
+}
+
+article strong:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== 页脚样式 ===== */
+footer {
+    background: linear-gradient(135deg, 
+        rgba(248, 200, 220, 0.8), 
+        rgba(212, 193, 236, 0.7));
+    color: var(--text-dark);
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 60px;
+    position: relative;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-accent);
+    background-size: 200% 100%;
+    animation: gentleShine 6s ease infinite;
+}
+
+footer::after {
+    content: '🌺';
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8em;
+    opacity: 0.3;
+    animation: gentleBounce 5s ease-in-out infinite;
+}
+
+footer p {
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 1;
+    font-size: 1em;
+    color: var(--text-light);
+}
+
+footer a {
+    color: #8a6bb8;
+    text-decoration: none;
+    transition: var(--transition);
+    position: relative;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+footer a::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #8a6bb8;
+    transition: width 0.3s ease;
+}
+
+footer a:hover::after {
+    width: 100%;
+}
+
+footer a:hover {
+    color: #6b5b95;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== 响应式设计 ===== */
+@media (max-width: 768px) {
+    .container {
+        margin: 15px;
+        border-radius: 15px;
+    }
+    
+    header h1 {
+        font-size: 2.2em;
+        letter-spacing: 1px;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    nav a {
+        display: block;
+        margin: 3px 15px;
+        text-align: center;
+    }
+    
+    main {
+        padding: 30px 20px;
+    }
+    
+    #welcome {
+        padding: 30px 20px;
+    }
+    
+    #welcome h2 {
+        font-size: 2em;
+    }
+    
+    article {
+        padding: 25px 20px;
+    }
+    
+    article h3::before {
+        display: none;
+    }
+}
+
+/* 优雅滚动条 */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: linear-gradient(135deg, #f8c8dc, #a7d2e8);
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-blue));
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--accent-coral), var(--accent-mint));
+}
